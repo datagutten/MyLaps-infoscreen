@@ -5,7 +5,10 @@ $start=time();
 
 $url="http://www.mylaps.com/api/practicelocation?evalScripts=true&id=$track_id&limit=$limit&page=1";
 $data=json_decode(file_get_contents($url),true);
-
+$datetime_now=new DateTime();
+$cachedir='cache';
+if(!file_exists($cachedir))
+	mkdir($cachedir);
 foreach($data['activities'] as $activity_key=>$activity)
 {
 	//print_r($activity);
@@ -14,10 +17,24 @@ foreach($data['activities'] as $activity_key=>$activity)
 	Nick
 	Transponder
 	LapTime*/
+
 	$userdata_url="http://www.mylaps.com/api/practiceactivity?activityID={$activity['id']}&chipID=&refreshInterval=0&view=table";
-	$userdata=@file_get_contents($userdata_url);
+
+	if($activity['rawDate']!=date('Y-m-d')) //Activites from previous days can be cached
+	{
+		if(!file_exists($cachefile="$cachedir/{$activity['id']}.json"))
+		{
+			$userdata=file_get_contents($userdata_url); //Fetch data from MyLaps
+			file_put_contents($cachefile,$userdata); //Write to cache
+		}
+		else
+			$userdata=file_get_contents($cachefile);
+	}
+	else //Always fetch data for todays activities
+		$userdata=file_get_contents($userdata_url); //Fetch data from MyLaps
 	$userdata=json_decode($userdata,true);
 	//print_r($activity);
+
 	if(empty($userdata['chip']['sessions']))
 	{
 		//echo "Skip {$activity['id']}\n";
