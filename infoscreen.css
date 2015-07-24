@@ -1,0 +1,52 @@
+@charset "utf-8";
+.faster {
+	background-color: #e8ffe1;
+}
+.slower {
+	background-color: #ffd9d9;
+}
+.best-session {
+	background-color: #cf9fff;
+}
+.best-time {
+	background-color: #cf9fff;
+}
+ul {
+	list-style: none;
+}
+.ambassador-header .sport-icon.avatar {
+	margin: 0 auto;
+	width: 3.75rem;
+	height: 3.75rem;
+	border-radius: 50%;
+	border: 1px solid #595959;
+	background-color: #FFF;
+	background-size: 2.5rem 2.5rem;
+	background-position: center;
+}
+.avatar {
+	border: 1px solid #4d4d4d;
+	border-radius: 50%;
+	/*width: 1.875rem;
+  height: 1.875rem;*/
+	width: 30px;
+	height: 30px;
+	margin-top: 0.3125rem;
+	margin-right: 0.625rem;
+	vertical-align: middle;
+}
+.avatarnick {
+	vertical-align: middle;
+}
+.cell {
+	width: 30%;
+	padding-left: 0.625em;
+	border: thick;
+}
+.nick {
+	vertical-align: middle;
+}
+.laps {
+	font-size: 30px;
+}
+
