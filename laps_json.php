@@ -5,6 +5,8 @@ $start=time();
 
 $url="http://www.mylaps.com/api/practicelocation?evalScripts=true&id=$track_id&limit=$limit&page=1";
 $data=json_decode(file_get_contents($url),true);
+if($data===false)
+	trigger_error("Unable to get data from MyLaps",E_USER_ERROR);
 $datetime_now=new DateTime();
 $cachedir='cache';
 if(!file_exists($cachedir))
