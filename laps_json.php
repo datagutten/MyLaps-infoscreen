@@ -86,6 +86,16 @@ foreach($data['activities'] as $activity_key=>$activity)
 }
 
 $json=json_encode($data_out);
-echo $json;
-//print_r(json_decode($json,true));
+
+if(isset($argv[1]))
+{
+	if($argv[1]=='runtime')
+		echo time()-$start."\n";
+	elseif($argv[1]=='print')
+		print_r(json_decode($json,true));
+	else
+		echo "Invalid command line argument: {$argv[1]}\n";
+}
+else
+	echo $json;
 ?>
