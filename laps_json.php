@@ -24,6 +24,8 @@ foreach($data['activities'] as $activity_key=>$activity)
 
 	if($activity['rawDate']!=date('Y-m-d')) //Activites from previous days can be cached
 	{
+		if(isset($show_only_today))
+			continue; //Only show todays passings
 		if(!file_exists($cachefile="$cachedir/{$activity['id']}.json"))
 		{
 			$userdata=file_get_contents($userdata_url); //Fetch data from MyLaps
