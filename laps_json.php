@@ -66,9 +66,9 @@ foreach($data['activities'] as $activity_key=>$activity)
 		$activity['person']['avatar']=false;
 	if(!isset($activity['person']['nickname']))
 		$activity['person']['nickname']='';
-	$personinfo=array('avatar'=>$activity['person']['avatar'],'nickname'=>$activity['person']['nickname'],'transponder'=>$activity['chiplabel'],'chiplabel'=>$userdata['chip']['label']);
+	$personinfo=array('avatar'=>$activity['person']['avatar'],'nickname'=>$activity['person']['nickname'],'transponder'=>$activity['chiplabel'],'chip'=>$userdata['chip']['chipID']);
 	if(date('Y-m-d',$activity['timestamp'])!=date('Y-m-d'))
-		$personinfo['chiplabel']='';
+		$personinfo['chip']='';
 	//$lapinfo=array('laptime'=>$last_round['lapTime'],'difference'=>$last_round['difference'],'class'=>$last_round['class']
 	
 
