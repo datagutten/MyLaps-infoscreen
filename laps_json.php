@@ -62,7 +62,7 @@ foreach($data['activities'] as $activity_key=>$activity)
 
 	$last_round=array_pop($last_session['items']); //Get last round of last session
 	
-	if(empty($activity['person']['avatar']))
+	if(empty($activity['person']['avatar']) || isset($config['hide_avatars']))
 		$activity['person']['avatar']=false;
 	if(!isset($activity['person']['nickname']))
 		$activity['person']['nickname']='';
