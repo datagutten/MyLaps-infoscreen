@@ -22,7 +22,7 @@ foreach($data['activities'] as $activity_key=>$activity)
 
 	$userdata_url="http://www.mylaps.com/api/practiceactivity?activityID={$activity['id']}&chipID=&refreshInterval=0&view=table";
 
-	if($activity['rawDate']!=date('Y-m-d')) //Activites from previous days can be cached
+	if(date('Y-m-d',$activity['timestamp'])!=date('Y-m-d')) //Activites from previous days can be cached
 	{
 		if(isset($show_only_today))
 			continue; //Only show todays passings
