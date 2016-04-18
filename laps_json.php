@@ -46,8 +46,9 @@ foreach($data['activities'] as $activity_key=>$activity)
 	}
 	foreach($userdata['chip']['sessions'] as $session_key=>$session) //Loop through the sessions to get the best times
 	{
-		foreach($session['items'] as $lap)
+		foreach($session['items'] as $lapkey=>$lap)
 		{
+			$userdata['chip']['sessions'][$session_key]['items'][$lapkey]['lapTime']=$lap['lapTime']=substr($lap['lapTime'],3);
 			if($lap['class']=='best-time') //Days best time
 				$other_info['best-time']=$lap['lapTime'];
 			if($lap['class']=='best-session') //Best time in last session
