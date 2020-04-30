@@ -1,5 +1,15 @@
 {
+    "name": "datagutten/amb-infoscreen",
+    "description": "Show lap times using data from a AMB or MyLaps decoder. This tool is designed to work offline without internet connection.",
+    "type": "project",
     "require": {
         "datagutten/amb-laptimes": "dev-master"
-    }
+    },
+    "license": "GPL-3.0-or-later",
+    "authors": [
+        {
+            "name": "datagutten",
+            "email": "datagutten@datagutten.net"
+        }
+    ]
 }
