@@ -1,27 +1,17 @@
-<!DOCTYPE HTML>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-<title>MyLaps infoscreen</title>
-<script src="infoscreen.js"></script>
-<link href="infoscreen.css" rel="stylesheet" type="text/css">
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="static/jquery-3.5.0.min.js"></script>
+  <script src="static/laps.js"></script>
+  <link href="infoscreen.css" rel="stylesheet" type="text/css">
 </head>
-
 <body onLoad="pageload()">
-<!--
-Avatar
-Nick
-Transponder
-LapTime
-
-
-Loop users
-fetch time for each row
---> 
 <span id="time"></span>
 <div id="laps"></div>
-<!--<span onClick="disable_refresh()">Disable refresh</span>
--->
+<span onClick="disable_refresh()" id="disable_refresh" style="display: none">Disable refresh</span>
+
 <div>
   <dl id="laptimeslegend">
     <dt class="faster"> Laptime is faster than previous laptime</dt>

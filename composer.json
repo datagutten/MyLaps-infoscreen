@@ -3,7 +3,9 @@
     "description": "Show lap times using data from a AMB or MyLaps decoder. This tool is designed to work offline without internet connection.",
     "type": "project",
     "require": {
-        "datagutten/amb-laptimes": "dev-master"
+        "php": ">=5.6",
+        "datagutten/amb-laptimes": "^2.0",
+        "twig/twig": "^1.38|^2.7|^3.0"
     },
     "license": "GPL-3.0-or-later",
     "authors": [

@@ -1,0 +1,26 @@
+Updated: {{ time }}
+<table class="laps">
+    <tr>
+        <th>Driver</th>
+        <th>Transponder</th>
+        <th>Last lap</th>
+        <!--<th>Session best</th>-->
+        <th>Days best</th>
+        <th>Start time</th>
+    </tr>
+    {% for lap in laps %}
+    <tr class="{{ lap.class }}">
+        <td class="avatarnick">{% if lap.avatar %}<img src="data:image/jpg;base64, {{ lap.avatar }}" alt="avatar" class="avatar" />{% endif %}
+            {{ lap.nickname }}</td>
+        {% if lap.transponder_name is defined %}
+        <td class="transponder">{{ lap.transponder_name }}</td>
+        {% else %}
+        <td class="transponder">{{ lap.transponder }}</td>
+        {% endif %}
+        <td>{{ lap.lapTime }}</td>
+        <!--<td></td>-->
+        <td>{{ lap['best-time'] }}</td>
+        <td>{{ lap.datetime }}</td>
+    </tr>
+    {% endfor %}
+</table>
