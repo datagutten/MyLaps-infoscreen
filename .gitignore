@@ -2,6 +2,5 @@ config.php
 config_db*.php
 cache
 /vendor/
-composer.lock
 .idea
 avatars
