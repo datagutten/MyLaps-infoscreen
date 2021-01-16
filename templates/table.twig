@@ -10,17 +10,17 @@ Updated: {{ time }}
     </tr>
     {% for lap in laps %}
     <tr class="{{ lap.class }}">
-        <td class="avatarnick">{% if lap.avatar %}<img src="data:image/jpg;base64, {{ lap.avatar }}" alt="avatar" class="avatar" />{% endif %}
-            {{ lap.nickname }}</td>
+        <td class="avatarnick"><img src="{{ lap.transponder|avatar }}" alt="avatar" class="avatar" />
+            {{ lap.transponder|nickname }} </td>
         {% if lap.transponder_name is defined %}
         <td class="transponder">{{ lap.transponder_name }}</td>
         {% else %}
         <td class="transponder">{{ lap.transponder }}</td>
         {% endif %}
-        <td>{{ lap.lapTime }}</td>
+        <td>{{ lap.lap_time }}</td>
         <!--<td></td>-->
         <td>{{ lap['best-time'] }}</td>
-        <td>{{ lap.datetime }}</td>
+        <td>{{ lap.start_time }}</td>
     </tr>
     {% endfor %}
 </table>
