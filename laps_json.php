@@ -1,9 +1,12 @@
 <?Php
+
+use datagutten\amb\laps\lap_timing;
+
 require 'vendor/autoload.php';
 if(!empty($_GET['decoder'])) {
     try {
-        $laptimes = new laptimes($_GET['decoder']);
-        echo json_encode($laptimes->stats($laptimes->rounds()));
+        $laptimes = new lap_timing($_GET['decoder'], $config);
+        echo json_encode($laptimes->stats($laptimes->laps()));
     }
     catch (Exception $e)
     {
