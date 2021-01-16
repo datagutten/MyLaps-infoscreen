@@ -5,7 +5,8 @@
     "require": {
         "php": ">=5.6",
         "datagutten/amb-laptimes": "^3.0",
-        "twig/twig": "^1.38|^2.7|^3.0"
+        "twig/twig": "^1.38|^2.7|^3.0",
+        "ext-json": "*"
     },
     "license": "GPL-3.0-or-later",
     "authors": [
