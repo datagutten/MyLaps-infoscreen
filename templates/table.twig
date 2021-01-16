@@ -9,7 +9,7 @@ Updated: {{ time }}
         <th>Start time</th>
     </tr>
     {% for lap in laps %}
-    <tr class="{{ lap.class }}">
+    <tr class="{{ lap.class|default('') }}">
         <td class="avatarnick"><img src="{{ lap.transponder|avatar }}" alt="avatar" class="avatar" />
             {{ lap.transponder|nickname }} </td>
         {% if lap.transponder_name is defined %}
@@ -19,7 +19,7 @@ Updated: {{ time }}
         {% endif %}
         <td>{{ lap.lap_time }}</td>
         <!--<td></td>-->
-        <td>{{ lap['best-time'] }}</td>
+        <td>{{ lap['best-time']|default('') }}</td>
         <td>{{ lap.start_time }}</td>
     </tr>
     {% endfor %}
