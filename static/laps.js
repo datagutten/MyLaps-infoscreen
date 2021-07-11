@@ -1,18 +1,9 @@
 let interval_id;
-$( document ).ready(function() {
+$(document).ready(function () {
     console.log('Page load');
-    $.get('get_config.php', config_handler, 'json');
+    enable_refresh()
     update()
 });
-
-function config_handler(data) {
-    console.log(data);
-    set_refresh(data['refresh_interval']);
-    $("title").html( data['title']);
-    if(data['disable_button']) {
-        $("#disable_refresh").removeAttr('style');
-    }
-}
 
 function update() {
     const urlParams = new URLSearchParams(window.location.search);
@@ -20,11 +11,17 @@ function update() {
     $("#laps").load("infoscreen.php?decoder=" + decoder);
 }
 
-function set_refresh(interval) {
-    interval_id = setInterval(update,interval*1000);
-}
-
 function disable_refresh() {
     clearInterval(interval_id);
-    $("#disable_refresh").html('Refresh disabled')
+    $("#disable_refresh").html('Refresh disabled, click to enable').on('click', enable_refresh)
+}
+
+function enable_refresh() {
+    const interval = $('#laps')[0].getAttribute('data-refresh')
+    console.log('Refresh every', interval, 'second(s)')
+    interval_id = setInterval(update, interval * 1000);
+
+    $("#disable_refresh").html('Disable refresh').on('click', () => {
+        disable_refresh()
+    })
 }
