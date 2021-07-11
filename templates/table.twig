@@ -30,7 +30,7 @@ Updated: {{ time }}
             <td>{{ lap.lap_time }}</td>
             <!--<td></td>-->
             <td>{{ lap['best-time']|default('') }}</td>
-            <td>{{ lap.start_time }}</td>
+            <td>{{ lap.start_time|date('H:i') }}</td>
         </tr>
     {% endfor %}
 </table>
