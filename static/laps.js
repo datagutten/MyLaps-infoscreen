@@ -1,9 +1,9 @@
 let interval_id;
-function pageload() {
+$( document ).ready(function() {
     console.log('Page load');
     $.get('get_config.php', config_handler, 'json');
     update()
-}
+});
 
 function config_handler(data) {
     console.log(data);
