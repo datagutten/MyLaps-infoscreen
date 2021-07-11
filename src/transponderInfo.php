@@ -18,10 +18,10 @@ class transponderInfo extends infoScreen
     protected $info_cache;
 
 
-    function __construct()
+    function __construct($config)
     {
-        parent::__construct();
-        $this->db = PDOConnectHelper::connect_db_config($this->config_db);
+        parent::__construct($config);
+        $this->db = PDOConnectHelper::connect_db_config($config['db']);
         $this->st_transponder_info = $this->db->prepare('SELECT * FROM transponders WHERE transponder_id=?');
     }
 

@@ -3,8 +3,8 @@
 use datagutten\amb\infoScreen\infoScreen;
 
 require 'vendor/autoload.php';
-$utils = new infoScreen();
 $config = require 'config.php';
+$utils = new infoScreen($config);
 try
 {
     echo $utils->render('index.twig', ['config' => $config['infoscreen']]);

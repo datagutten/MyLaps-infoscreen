@@ -31,15 +31,16 @@ class infoScreen
 
     /**
      * infoScreen constructor.
+     * @param array $config
      */
-    function __construct()
+    function __construct(array $config)
     {
-        $this->config = require __DIR__ . '/../config.php';
-        $this->config_db = require __DIR__ . '/../config_db.php';
+        $this->config = $config;
+
         $this->avatar_folder = files::path_join(__DIR__, '..', 'avatars');
 
-        if (!file_exists($this->config['avatar_folder']))
-            mkdir($this->config['avatar_folder']);
+        if (!file_exists($this->config['infoscreen']['avatar_folder']))
+            mkdir($this->config['infoscreen']['avatar_folder']);
 
         if (!empty($_SERVER['SCRIPT_NAME']))
             $this->web_root = dirname($_SERVER['SCRIPT_NAME']);
