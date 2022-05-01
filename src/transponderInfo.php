@@ -25,9 +25,9 @@ class transponderInfo extends infoScreen
         $this->st_transponder_info = $this->db->prepare('SELECT * FROM transponders WHERE transponder_id=?');
     }
 
-    public function avatar_file($transponder_id, $extension = 'png')
+    public function avatar_file(int $transponder_id, string $extension = 'png'): string
     {
-        return files::path_join($this->avatar_folder, $transponder_id . '.' . $extension);
+        return files::path_join($this->avatar_folder, sprintf('%d.%s', $transponder_id, $extension));
     }
 
     function info($transponder_id, $field)

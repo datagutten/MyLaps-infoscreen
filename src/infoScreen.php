@@ -36,11 +36,13 @@ class infoScreen
     function __construct(array $config)
     {
         $this->config = $config;
+        if (!empty($this->config['infoscreen']) && !empty($this->config['infoscreen']['avatar_folder']))
+            $this->avatar_folder = $this->config['infoscreen']['avatar_folder'];
+        else
+            $this->avatar_folder = files::path_join(__DIR__, '..', 'avatars');
 
-        $this->avatar_folder = files::path_join(__DIR__, '..', 'avatars');
-
-        if (!file_exists($this->config['infoscreen']['avatar_folder']))
-            mkdir($this->config['infoscreen']['avatar_folder']);
+        if (!file_exists($this->avatar_folder))
+            mkdir($this->avatar_folder);
 
         if (!empty($_SERVER['SCRIPT_NAME']))
             $this->web_root = dirname($_SERVER['SCRIPT_NAME']);
