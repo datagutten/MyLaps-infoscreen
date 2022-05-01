@@ -30,7 +30,7 @@ class transponderInfo extends infoScreen
         return files::path_join($this->avatar_folder, sprintf('%d.%s', $transponder_id, $extension));
     }
 
-    function info($transponder_id, $field)
+    function info(int $transponder_id, string $field): string
     {
         if (!empty($this->info_cache[$transponder_id]))
             return $this->info_cache[$transponder_id][$field];
@@ -44,7 +44,7 @@ class transponderInfo extends infoScreen
                 $this->info_cache[$transponder_id] = $info;
                 return $info[$field];
             } else
-                return [];
+                return '';
         }
     }
 
