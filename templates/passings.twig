@@ -1,0 +1,30 @@
+{% extends 'base.twig' %}
+{% block body %}
+    <table>
+        <tr>
+            <th>Time</th>
+            <th>Number</th>
+            <th colspan="2">Transponder</th>
+            <th>Strength</th>
+            <th>Hits</th>
+            <th>Flags</th>
+            <th>Diff</th>
+        </tr>
+        {% for passing in passings %}
+            <tr>
+                <td data-time="{{ passing.rtc_time }}">{{ passing.rtc_time|amb_time }}</td>
+                <td>{{ passing.passing_number }}</td>
+                <td><a href="?decoder={{ passing.decoder_id }}&amp;transponder={{ passing.transponder }}">{{ passing.transponder }}</a></td>
+                <td class="avatarnick"><img src="{{ passing.transponder|avatar }}" alt="avatar" class="avatar"/>{{ passing.transponder|nickname }}</td>
+                <td>
+                    <meter value="{{ passing.strength }}"
+                           min="40" max="150" low="60" high="100" optimum="130"
+                           style="width: 100px; height: 1.3em"
+                    >{{ passing.strength }}</meter> {{ passing.strength }}</td>
+                <td>{{ passing.hits }}</td>
+                <td>{{ passing.flags }}</td>
+                <td>{{ passing.diff }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
