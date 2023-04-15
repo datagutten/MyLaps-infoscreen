@@ -46,6 +46,8 @@ class infoScreen
 
         if (!empty($_SERVER['SCRIPT_NAME']))
             $this->web_root = dirname($_SERVER['SCRIPT_NAME']);
+        if ($this->web_root == '/')
+            $this->web_root = '';
         $this->project_root = dirname(dirname(__FILE__));
 
         $loader = new Twig\Loader\FilesystemLoader(array(__DIR__ . '/../templates'), __DIR__);
