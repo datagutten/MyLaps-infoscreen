@@ -66,6 +66,7 @@ class infoScreen
     public function render(string $template, array $context): string
     {
         $context['root'] = $this->web_root;
+        $context['config'] = $this->config['infoscreen'];
         return $this->twig->render($template, $context);
     }
 }
