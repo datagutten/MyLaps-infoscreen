@@ -3,7 +3,7 @@
     "description": "Show lap times using data from a AMB or MyLaps decoder. This tool is designed to work offline without internet connection.",
     "type": "project",
     "require": {
-        "php": ">=7.1",
+        "php": ">=7.4",
         "datagutten/amb-laptimes": "dev-master",
         "twig/twig": "^1.38|^2.7|^3.0",
         "ext-json": "*",

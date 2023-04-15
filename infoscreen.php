@@ -16,9 +16,9 @@ $filters = new transponderInfoFilters($config);
 $filters->register_filters($twig);
 
 
-if (!empty($_GET['decoder'])) {
+if (!empty($_GET['decoder']) || !empty($argv[1])) {
     try {
-        $lap_timing = new lap_timing($config, $_GET['decoder']);
+        $lap_timing = new lap_timing($config, $_GET['decoder'] ?? $argv[1]);
         echo $twig->render('table.twig', [
             'laps' => $lap_timing->stats($lap_timing->laps($config['infoscreen']['round_limit'])),
             'time'=>date('H:i:s'),
