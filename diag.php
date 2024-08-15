@@ -2,13 +2,12 @@
 
 use datagutten\amb\infoScreen\infoScreen;
 use datagutten\amb\infoScreen\transponderInfoFilters;
-use datagutten\amb\laps\lap_timing;
 
 ini_set('display_errors', true);
 require 'vendor/autoload.php';
 $config = require __DIR__ . '/config.php';
-$info = new infoScreen($config);
-$lap_timing = new lap_timing($config, $_GET['decoder'] ?? $argv[1]);
+$info = new infoScreen($config, $_GET['decoder'] ?? $argv[1]);
+$lap_timing = $info->timing;
 $limit = 200;
 
 if (!empty($_GET['transponder']))
@@ -19,23 +18,20 @@ else
 $laps = $lap_timing->laps($limit * 2, 3600);
 $laps_transponder = [];
 
-$passings = $st_passings->fetchAll(PDO::FETCH_ASSOC);
 foreach ($laps as $key => $lap)
 {
     $laps_transponder[$lap['transponder']][$lap['end_number']] = $lap;
-    //$laps[$passing['transponder']][$passing['passing_number']] = $passing;
 }
 
+$passings = $lap_timing->passings($limit);
 foreach ($passings as $key => $passing)
 {
-    $passing = array_map('intval', $passing);
-    if (!isset($laps_transponder[$passing['transponder']][$passing['passing_number']]))
-        $passings[$key]['diff'] = null;
+    if (!isset($laps_transponder[$passing->transponder_num][$passing->number]))
+        $passing->diff = null;
     else
-        $passings[$key]['diff'] = $laps_transponder[$passing['transponder']][$passing['passing_number']]['lap_time'];
-}
+        $passing->diff = $laps_transponder[$passing->transponder_num][$passing->number]['lap_time'];
 
-$filters = new transponderInfoFilters($config);
-$filters->register_filters($info->twig);
+    $info->transponderInfo->set_transponder($passing);
+}
 
 echo $info->render('passings.twig', ['passings' => $passings]);
