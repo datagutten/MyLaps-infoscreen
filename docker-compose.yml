@@ -1,0 +1,7 @@
+services:
+  infoscreen:
+    build: .
+    volumes:
+      - ./config.php:/var/www/html/config.php
+    ports:
+      - 1337:80
