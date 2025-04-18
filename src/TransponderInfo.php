@@ -27,7 +27,7 @@ class TransponderInfo
     {
         if (isset($this->transponders[$transponder]))
             return $this->transponders[$transponder];
-        throw new RuntimeException('No info found for transponder');
+        throw new RuntimeException(sprintf('No info found for transponder %d', $transponder));
     }
 
     public function set_transponder(PassingWeb|LapWeb $object): PassingWeb|LapWeb

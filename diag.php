@@ -30,8 +30,12 @@ foreach ($passings as $key => $passing)
         $passing->diff = null;
     else
         $passing->diff = $laps_transponder[$passing->transponder_num][$passing->number]['lap_time'];
-
-    $info->transponderInfo->set_transponder($passing);
+    try
+    {
+        $info->transponderInfo->set_transponder($passing);
+    } catch (RuntimeException)
+    {
+    }
 }
 
 echo $info->render('passings.twig', ['passings' => $passings]);
