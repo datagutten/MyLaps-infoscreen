@@ -6,7 +6,8 @@ use datagutten\amb\infoScreen\utils;
 require __DIR__ . '/vendor/autoload.php';
 $decoder = utils::sanitize_decoder_id($_GET['decoder'] ?? $argv[1]);
 $timing = new LapTimingWeb(require 'config.php', $decoder);
-$passings = $timing->passings(200);
+$limit = intval($_GET['limit'] ?? 200);
+$passings = $timing->passings($limit);
 $passings_array = [];
 foreach ($passings as $passing_obj) {
     $passing = (array)$passing_obj;
