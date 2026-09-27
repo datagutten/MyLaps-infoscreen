@@ -1,14 +1,16 @@
 <?php
 
 use datagutten\amb\infoScreen\infoScreen;
+use datagutten\amb\infoScreen\utils;
 
 require 'vendor/autoload.php';
 $config = require __DIR__.'/config.php';
 
-$utils = new infoScreen($config, $_GET['decoder'] ?? $argv[1]);
+$decoder = utils::sanitize_decoder_id($_GET['decoder'] ?? $argv[1]);
+$utils = new infoScreen($config, $decoder);
 
 
-if (!empty($_GET['decoder']) || !empty($argv[1])) {
+if (!empty($decoder)) {
     try {
         echo $utils->render('table.twig', [
             'laps' => $utils->laps($config['infoscreen']['round_limit']),

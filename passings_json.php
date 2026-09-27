@@ -1,9 +1,11 @@
 <?php
 
 use datagutten\amb\infoScreen\LapTimingWeb;
+use datagutten\amb\infoScreen\utils;
 
 require __DIR__ . '/vendor/autoload.php';
-$timing = new LapTimingWeb(require 'config.php', $_GET['decoder'] ?? $argv[1]);
+$decoder = utils::sanitize_decoder_id($_GET['decoder'] ?? $argv[1]);
+$timing = new LapTimingWeb(require 'config.php', $decoder);
 $passings = $timing->passings(200);
 $passings_array = [];
 foreach ($passings as $passing_obj) {

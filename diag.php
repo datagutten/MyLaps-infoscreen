@@ -2,16 +2,18 @@
 
 use datagutten\amb\infoScreen\infoScreen;
 use datagutten\amb\infoScreen\transponderInfoFilters;
+use datagutten\amb\infoScreen\utils;
 
 ini_set('display_errors', true);
 require 'vendor/autoload.php';
 $config = require __DIR__ . '/config.php';
-$info = new infoScreen($config, $_GET['decoder'] ?? $argv[1]);
+$decoder = utils::sanitize_decoder_id($_GET['decoder'] ?? $argv[1]);
+$info = new infoScreen($config, $decoder);
 $lap_timing = $info->timing;
 $limit = 200;
 
 if (!empty($_GET['transponder']))
-    $st_passings = $lap_timing->db->query(sprintf('SELECT * FROM %s WHERE transponder=%d ORDER BY rtc_time DESC LIMIT %d', $lap_timing->table, $_GET['transponder'], $limit));
+    $st_passings = $lap_timing->db->query(sprintf('SELECT * FROM %s WHERE transponder=%d ORDER BY rtc_time DESC LIMIT %d', $lap_timing->table, intval($_GET['transponder']), $limit));
 else
     $st_passings = $lap_timing->db->query(sprintf('SELECT * FROM %s ORDER BY rtc_time DESC LIMIT %d', $lap_timing->table, $limit));
 
